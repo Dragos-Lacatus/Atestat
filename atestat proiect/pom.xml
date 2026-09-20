@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>26</maven.compiler.release>
+        <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>26.0.2</javafx.version>
     </properties>
@@ -23,19 +23,30 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>${project.basedir}/ui</sourceDirectory>
+        <sourceDirectory>${project.basedir}</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/grafica</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.0</version>
+                <configuration>
+                    <includes>
+                        <include>ui/**/*.java</include>
+                        <include>logic/**/*.java</include>
+                    </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>TitleScreen</mainClass>
+                    <mainClass>ui.TitleScreen</mainClass>
                 </configuration>
             </plugin>
         </plugins>
