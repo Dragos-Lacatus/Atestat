@@ -24,18 +24,16 @@ public class Scrolling_Logic {
             for (int j = 0; j < COLS; j++) {
                 ImageView imageView = new ImageView(imageFile);
                 imageView.setX(i * 32 + 32);
-                imageView.setY(j * 32 - 32); //We create an extra line and column above the screen to make the transition smoother
+                imageView.setY(j * 32 - 32); 
 
                 views[i][j] = imageView;
                 frame.getChildren().add(imageView);
             }
         }
 
-
-        // Set up the animation loop
-        int totalHeight = COLS * 32; // Total height of the grid in pixels
-        int totalWidth = ROWS * 32; // Total width of the grid in pixels
-
+       
+        int totalHeight = COLS * 32;
+        int totalWidth = ROWS * 32;
         AnimationTimer loopTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -43,10 +41,9 @@ public class Scrolling_Logic {
                     for (int j = 0; j < COLS; j++) {
                         ImageView tile = views[i][j];
                         
-                        // Shift image downward
                         double newY = tile.getY() + SPEED;
                         double newX = tile.getX() + SPEED;
-                        // Wrap back to top once it moves off the bottom edge, likewise to the left edge
+
                         if (newY >= totalHeight -32) { 
                             newY -= totalHeight; 
                         }
@@ -56,6 +53,7 @@ public class Scrolling_Logic {
 
                         tile.setY(newY);
                         tile.setX(newX);
+                        
                     }
                 }
             }

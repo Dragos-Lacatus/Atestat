@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import ui.MainMenu;
 
 public class Transition {
     private Pane frame;
@@ -37,6 +38,7 @@ public class Transition {
 
         AnimationTimer loopTimer = new AnimationTimer() {
 
+            MainMenu mainMenu = new MainMenu(frame);
             boolean reachEdgeScreen = false;
 
             public void handle(long now) {
@@ -57,6 +59,7 @@ public class Transition {
                 if (views[20][29].getX() >= totalWidth) {
                     reachEdgeScreen = true;
                     scrollingLogic.scrollImage("file:grafica//blue tile.png");
+                    mainMenu.showMainMenu();
                     
                     for (int i = 0; i < ROWS; i++) {
                         for (int j = 0; j < COLS; j++) {
