@@ -1,5 +1,6 @@
 package ui;
 
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.ButtonCreator;
+import Food.Cereal;
 
 public class MainMenu {
     private Pane frame;
@@ -59,6 +61,8 @@ public class MainMenu {
         gridPane.setLayoutX(385);
         gridPane.setLayoutY(165);
 
+        Cereal cer = new Cereal(this.frame);
+
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
                 Button button = new Button();
@@ -72,7 +76,10 @@ public class MainMenu {
                 final int c = col;
 
                 button.setOnAction(e -> {
-                    System.out.println("Clicked button at row " + r + ", column " + c);
+                    if(r==0 && c==0){
+                        cer.startRecipe();
+                        System.out.println("Rețetă pentru lapte cu cereale");
+                    }
                 });
 
                 buttonMatrix[row][col] = button;

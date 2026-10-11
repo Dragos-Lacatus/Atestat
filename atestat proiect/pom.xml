@@ -9,9 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>25</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javafx.version>26.0.2</javafx.version>
+        <javafx.version>17.0.2</javafx.version>
     </properties>
 
     <dependencies>
@@ -38,6 +38,7 @@
                     <includes>
                         <include>ui/**/*.java</include>
                         <include>logic/**/*.java</include>
+                        <include>Food/**/*.java</include>
                     </includes>
                 </configuration>
             </plugin>
