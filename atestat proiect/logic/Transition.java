@@ -13,12 +13,12 @@ public class Transition {
         this.frame = frame;
     }
 
-    public void transitionTo() {
+    public void transitionTo(int speed, String imagePath, boolean condition) {
         Image spike = new Image("file:grafica//spike.png");
         Image square = new Image("file:grafica//black square.png");
         final int ROWS = 21;
         final int COLS = 30;
-        final double SPEED = 6;
+        final double SPEED = speed;
         ImageView[][] views = new ImageView[ROWS][COLS];
         int totalWidth = 640;
 
@@ -58,8 +58,12 @@ public class Transition {
 
                 if (views[20][29].getX() >= totalWidth) {
                     reachEdgeScreen = true;
-                    scrollingLogic.scrollImage("file:grafica//blue tile.png");
-                    mainMenu.showMainMenu();
+                    mainMenu.hideMainMenu();
+                    scrollingLogic.scrollImage(imagePath);
+                    
+                    if(condition){
+                        mainMenu.showMainMenu();
+                    }
                     
                     for (int i = 0; i < ROWS; i++) {
                         for (int j = 0; j < COLS; j++) {

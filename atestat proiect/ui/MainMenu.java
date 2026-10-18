@@ -78,7 +78,10 @@ public class MainMenu {
                 button.setOnAction(e -> {
                     if(r==0 && c==0){
                         cer.startRecipe();
-                        System.out.println("Rețetă pentru lapte cu cereale");
+                    }
+
+                    if(r==0 && c==1){
+                        cer.minigame();
                     }
                 });
 
@@ -88,5 +91,9 @@ public class MainMenu {
         }
 
         frame.getChildren().add(gridPane);
+    }
+
+    public void hideMainMenu(){
+        frame.getChildren().clear();
     }
 }

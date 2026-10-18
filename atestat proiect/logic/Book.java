@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class Book {
-    private int numberOfpages;
+    private int numberOfPages;
     private int currentPage;
     private Pane frame;
     public Button prevButton = new ButtonCreator().createButton("file:grafica//arrow.png", 80, 40, 380, 800, null, 0, null);
@@ -15,12 +15,18 @@ public class Book {
     private Image bookImage = new Image("file:grafica//paper.png");
     private ImageView bookImageView = new ImageView(bookImage);
     private Label label = new Label();
+    public Button closeButton = new ButtonCreator().createButton("file:grafica//close button.png", 40, 40, 120, 120, null, 0, null);
 
-    public Book(int numberOfpages, Pane frame) {
-        this.numberOfpages = numberOfpages;
+    public Book(int numberOfPages, Pane frame) {
+        this.numberOfPages = numberOfPages;
         this.currentPage = 1;
         this.frame = frame;
-        label.setText("Pagină: 1/" + this.numberOfpages);
+        label.setText("Pagină: 1/" + this.numberOfPages);
+        prevButton.setDisable(true);
+
+        if(this.numberOfPages == 1){
+            nextButton.setDisable(true);
+        }
     }
 
 
@@ -28,14 +34,15 @@ public class Book {
         return this.currentPage;
     }
 
-    public int getNumberOfpages() {
-        return numberOfpages;
+    public int getNumberOPages() {
+        return numberOfPages;
     }
 
     public void nextPage() {
-        if (currentPage < numberOfpages) {
-            currentPage++;
+        currentPage++;
+        if (currentPage < numberOfPages) {
             nextButton.setDisable(false);
+            prevButton.setDisable(false);
         }
         else{
             nextButton.setDisable(true);
@@ -43,8 +50,9 @@ public class Book {
     }
 
     public void previousPage() {
+        currentPage--;
         if (currentPage > 1) {
-            currentPage--;
+            nextButton.setDisable(false);
             prevButton.setDisable(false);
         } else {
             prevButton.setDisable(true);
@@ -63,11 +71,20 @@ public class Book {
         label.setLayoutX(150);
         label.setLayoutY(850);
         label.fontProperty().setValue(javafx.scene.text.Font.font("Arial", 20));
+        frame.getChildren().add(closeButton);
         frame.getChildren().add(label);
     }
 
     public void changePage(int pageNumber) {
-        label.setText("Pagină: " + pageNumber + "/" + this.numberOfpages);
+        label.setText("Pagină: " + pageNumber + "/" + this.numberOfPages);
+    }
+
+    public void disappearBook(){
+        frame.getChildren().remove(bookImageView);
+        frame.getChildren().remove(prevButton);
+        frame.getChildren().remove(nextButton);
+        frame.getChildren().remove(label);
+        frame.getChildren().remove(closeButton);
     }
 
 }
