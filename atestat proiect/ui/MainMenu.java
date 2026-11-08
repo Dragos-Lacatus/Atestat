@@ -24,6 +24,9 @@ public class MainMenu {
     }
 
     public void showMainMenu() {
+        Pane menuPane = new Pane();
+        menuPane.setId("main-menu");
+
         Image rectangle = new Image("file:grafica//rectangle.png");
 
         final int MAXSIZE = 5;
@@ -36,20 +39,20 @@ public class MainMenu {
             rectangleView.setFitHeight(200);
             rectangleView.setY(i * 225 + 50);
             rectangleArmy[i] = rectangleView;
-            frame.getChildren().add(rectangleView);
+            menuPane.getChildren().add(rectangleView);
         }
 
         Image cereal = new Image("file:grafica//cereal.png");
         ImageView cerealView = new ImageView(cereal);
         cerealView.setX(70);
         cerealView.setY(50);
-        frame.getChildren().add(cerealView);
+        menuPane.getChildren().add(cerealView);
 
         Label cerealLabel = new Label("Lapte cu cereale");
         cerealLabel.setLayoutX(cerealView.getX() + 96);
         cerealLabel.setLayoutY(cerealView.getY());
         cerealLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        frame.getChildren().add(cerealLabel);
+        menuPane.getChildren().add(cerealLabel);
 
         final int ROWS = 4;
         final int COLS = 2;
@@ -81,7 +84,7 @@ public class MainMenu {
                     }
 
                     if(r==0 && c==1){
-                        cer.minigame();
+                        cer.minigameOne();
                     }
                 });
 
@@ -90,10 +93,11 @@ public class MainMenu {
             }
         }
 
-        frame.getChildren().add(gridPane);
+        menuPane.getChildren().add(gridPane);
+        frame.getChildren().add(menuPane);
     }
 
     public void hideMainMenu(){
-        frame.getChildren().clear();
+        frame.getChildren().removeIf(node -> "main-menu".equals(node.getId()));
     }
 }

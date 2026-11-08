@@ -8,6 +8,7 @@ import ui.MainMenu;
 
 public class Transition {
     private Pane frame;
+    public boolean OK = false;
 
     public Transition(Pane frame) {
         this.frame = frame;
@@ -63,19 +64,27 @@ public class Transition {
                     
                     if(condition){
                         mainMenu.showMainMenu();
+                        for (int i = 0; i < ROWS; i++) {
+                            for (int j = 0; j < COLS; j++) {
+                                views[i][j].toFront();
+                            }
+                        }
                     }
                     
                     for (int i = 0; i < ROWS; i++) {
                         for (int j = 0; j < COLS; j++) {
-                            if (i == ROWS - 1) {
-                                views[i][j] = new ImageView(spike);
-                            } else {
-                                views[i][j] = new ImageView(square);
-                            }
-
                             views[i][j].setX(i * 32);
                             views[i][j].setY(j * 32);
-                            frame.getChildren().add(views[i][j]);
+                        }
+                    }
+                }
+
+                if (reachEdgeScreen && views[ROWS - 1][0].getBoundsInParent().getMaxX() <= 0) {
+                    OK = true;
+                    stop();
+                    for (int i = 0; i < ROWS; i++) {
+                        for (int j = 0; j < COLS; j++) {
+                            frame.getChildren().remove(views[i][j]);
                         }
                     }
                 }

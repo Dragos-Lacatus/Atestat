@@ -29,7 +29,7 @@ public class TitleScreen extends Application {
         startButton.setOnAction(e -> {
             startButton.setVisible(false);
             Transition transition = new Transition(frame);
-            transition.transitionTo(6, "file:grafica//blue tile.png", true);
+            transition.transitionTo(40, "file:grafica//blue tile.png", true);
         });
 
         stage.show();
